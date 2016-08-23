@@ -3,6 +3,14 @@
 The API WG will focus on creating two different specifications. A low-level
 JavaScript API and an API/ABI compatible native layer.
 
+There is some overlap with goals of the [Nan](https://github.com/nodejs/nan) 
+working group, however this working group is not a replacement for the Nan 
+working group.  Its focus is broader and the timeline for the proposed
+APIs is relatively long term.  As such the Nan working group will continue its
+work/support of the module to maintain an api across node releases for 
+the forseable future.
+
+
 ### JS API
 
 Here are some of the goals we will address:
@@ -32,7 +40,14 @@ Here are some of the goals we will address:
 
 ### Native API
 
-Concisely, the goal for creating a native API:
+The goal of the native API is to:
 
-Create an API/ABI C++ abstraction that is not affected by VM or version which
-meets the needs of the majority of native modules.
+* remove the need to change code between
+  Node.js releases (which is also covered by Nan)
+* make the API ABI stable in order to remove the need
+  to recompile at all (not covered by Nan).  
+* explicitly define the C and or C++ functions available os opposed to just
+  having all V8 APIs exposed.
+* meet the needs of a majority of native modules in a way that does not prevent
+  a smaller subset from using the V8 APIs directly.
+
